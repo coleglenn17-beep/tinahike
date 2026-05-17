@@ -1,0 +1,1077 @@
+# tinahike<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tina – Hike Prep Block</title>
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --surface: #eee8d8;
+    --card: #ffffff;
+    --border: #d4c9b0;
+    --accent: #3d6b4f;
+    --accent2: #8b4513;
+    --accent3: #c17f3a;
+    --text: #1e1a14;
+    --muted: #7a7060;
+    --light: #f9f5ed;
+    --green-light: rgba(61,107,79,0.1);
+    --green-mid: rgba(61,107,79,0.2);
+    --brown-light: rgba(139,69,19,0.1);
+    --amber-light: rgba(193,127,58,0.12);
+    --font-display: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    --font-body: -apple-system, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', sans-serif;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: var(–font-body);
+font-size: 14px;
+line-height: 1.6;
+min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+background: var(–accent);
+padding: 0 24px;
+position: sticky;
+top: 0;
+z-index: 100;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 56px;
+}
+
+.header-left {
+display: flex;
+align-items: center;
+gap: 14px;
+}
+
+.logo {
+font-family: var(–font-display);
+font-size: 20px;
+letter-spacing: 3px;
+color: #ffffff;
+}
+
+.client-tag {
+background: rgba(255,255,255,0.2);
+color: #fff;
+font-family: var(–font-mono);
+font-size: 11px;
+padding: 3px 10px;
+border-radius: 2px;
+letter-spacing: 1px;
+text-transform: uppercase;
+border: 1px solid rgba(255,255,255,0.3);
+}
+
+.header-meta {
+display: flex;
+gap: 16px;
+align-items: center;
+}
+
+.meta-pill {
+font-family: var(–font-mono);
+font-size: 10px;
+color: rgba(255,255,255,0.6);
+letter-spacing: 0.5px;
+}
+
+.meta-pill span { color: #fff; }
+
+/* HERO */
+.hero {
+background: var(–accent);
+padding: 36px 24px 40px;
+position: relative;
+overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+top: 0; right: 0; bottom: 0; left: 0;
+background: repeating-linear-gradient(
+45deg,
+transparent,
+transparent 40px,
+rgba(255,255,255,0.03) 40px,
+rgba(255,255,255,0.03) 41px
+);
+}
+
+.hero-sub {
+font-family: var(–font-mono);
+font-size: 11px;
+color: rgba(255,255,255,0.6);
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 10px;
+}
+
+.hero-title {
+font-family: var(–font-display);
+font-size: clamp(44px, 8vw, 76px);
+letter-spacing: 3px;
+line-height: 0.92;
+color: #fff;
+margin-bottom: 6px;
+position: relative;
+}
+
+.hero-title em {
+color: #a8d4b5;
+font-style: normal;
+}
+
+.hero-desc {
+font-size: 13px;
+color: rgba(255,255,255,0.65);
+margin-top: 14px;
+max-width: 500px;
+line-height: 1.5;
+}
+
+.goal-cards {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 24px;
+position: relative;
+}
+
+.goal-card {
+background: rgba(255,255,255,0.12);
+border: 1px solid rgba(255,255,255,0.2);
+border-radius: 6px;
+padding: 12px 16px;
+min-width: 130px;
+flex: 1;
+max-width: 180px;
+backdrop-filter: blur(4px);
+}
+
+.goal-card .label {
+font-family: var(–font-mono);
+font-size: 9px;
+color: rgba(255,255,255,0.55);
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 4px;
+}
+
+.goal-card .value {
+font-family: var(–font-display);
+font-size: 22px;
+letter-spacing: 1px;
+color: #fff;
+}
+
+.goal-card .desc {
+font-size: 11px;
+color: rgba(255,255,255,0.55);
+margin-top: 2px;
+}
+
+/* MAIN */
+.main {
+max-width: 1300px;
+margin: 0 auto;
+padding: 28px 20px 60px;
+}
+
+/* WEEK SELECTOR */
+.week-nav {
+display: flex;
+gap: 8px;
+margin-bottom: 28px;
+flex-wrap: wrap;
+}
+
+.week-btn {
+background: var(–card);
+border: 1px solid var(–border);
+color: var(–muted);
+font-family: var(–font-mono);
+font-size: 12px;
+letter-spacing: 1px;
+padding: 9px 24px;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.15s;
+}
+
+.week-btn:hover { border-color: var(–accent); color: var(–accent); }
+
+.week-btn.active {
+background: var(–accent);
+border-color: var(–accent);
+color: #fff;
+font-weight: 600;
+}
+
+/* WEEK HEADER */
+.week-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+margin-bottom: 20px;
+gap: 16px;
+flex-wrap: wrap;
+padding-bottom: 16px;
+border-bottom: 2px solid var(–accent);
+}
+
+.week-title {
+font-family: var(–font-display);
+font-size: 34px;
+letter-spacing: 2px;
+color: var(–accent);
+}
+
+.week-focus-tags {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+align-items: center;
+}
+
+.tag {
+font-family: var(–font-mono);
+font-size: 10px;
+letter-spacing: 0.8px;
+padding: 4px 10px;
+border-radius: 3px;
+text-transform: uppercase;
+}
+
+.tag-sled { background: var(–brown-light); color: var(–accent2); border: 1px solid rgba(139,69,19,0.3); }
+.tag-cardio { background: var(–amber-light); color: var(–accent3); border: 1px solid rgba(193,127,58,0.3); }
+.tag-legs { background: var(–green-light); color: var(–accent); border: 1px solid rgba(61,107,79,0.3); }
+
+/* SESSIONS GRID */
+.sessions-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 18px;
+}
+
+.session-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.session-header {
+background: var(–accent);
+padding: 11px 18px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.session-num {
+font-family: var(–font-display);
+font-size: 18px;
+letter-spacing: 1px;
+color: #fff;
+}
+
+.session-day {
+font-family: var(–font-mono);
+font-size: 10px;
+color: rgba(255,255,255,0.65);
+letter-spacing: 1px;
+}
+
+.session-body { padding: 16px 18px; }
+
+/* CIRCUIT BLOCK */
+.circuit-block {
+background: var(–green-light);
+border: 1px solid rgba(61,107,79,0.25);
+border-radius: 6px;
+padding: 12px 14px;
+margin-bottom: 14px;
+}
+
+.circuit-title {
+font-family: var(–font-mono);
+font-size: 10px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–accent);
+font-weight: 600;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.circuit-title::before {
+content: ‘⬡’;
+font-size: 12px;
+}
+
+.circuit-note {
+font-size: 11px;
+color: var(–muted);
+font-style: italic;
+margin-bottom: 8px;
+}
+
+/* SLED BLOCK */
+.sled-block {
+background: var(–brown-light);
+border: 1px solid rgba(139,69,19,0.25);
+border-radius: 6px;
+padding: 12px 14px;
+margin-bottom: 14px;
+}
+
+.sled-title {
+font-family: var(–font-mono);
+font-size: 10px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–accent2);
+font-weight: 600;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.sled-title::before {
+content: ‘▶’;
+font-size: 10px;
+}
+
+/* CARDIO BLOCK */
+.cardio-block {
+background: var(–amber-light);
+border: 1px solid rgba(193,127,58,0.25);
+border-radius: 6px;
+padding: 12px 14px;
+margin-bottom: 14px;
+}
+
+.cardio-title {
+font-family: var(–font-mono);
+font-size: 10px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+color: var(–accent3);
+font-weight: 600;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.cardio-title::before {
+content: ‘◎’;
+font-size: 12px;
+}
+
+/* SECTION LABEL */
+.section-label {
+font-family: var(–font-mono);
+font-size: 9px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–muted);
+margin: 14px 0 8px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.section-label::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+
+.section-label:first-child { margin-top: 0; }
+
+/* EXERCISE ROWS */
+.exercise-row {
+display: grid;
+grid-template-columns: 1fr auto;
+gap: 8px;
+align-items: start;
+padding: 7px 0;
+border-bottom: 1px solid #f0ebe0;
+}
+
+.exercise-row:last-child { border-bottom: none; }
+
+.ex-name {
+font-size: 13px;
+font-weight: 500;
+color: var(–text);
+line-height: 1.4;
+}
+
+.ex-name .badge {
+display: inline-block;
+font-family: var(–font-mono);
+font-size: 9px;
+padding: 1px 5px;
+border-radius: 2px;
+margin-left: 5px;
+vertical-align: middle;
+}
+
+.badge-key { background: var(–green-light); color: var(–accent); border: 1px solid rgba(61,107,79,0.35); }
+.badge-prog { background: var(–amber-light); color: var(–accent3); border: 1px solid rgba(193,127,58,0.35); }
+.badge-hike { background: var(–brown-light); color: var(–accent2); border: 1px solid rgba(139,69,19,0.35); }
+
+.ex-note {
+font-size: 11px;
+color: var(–muted);
+margin-top: 1px;
+font-style: italic;
+line-height: 1.4;
+}
+
+.ex-sets {
+font-family: var(–font-mono);
+font-size: 12px;
+color: var(–muted);
+white-space: nowrap;
+text-align: right;
+padding-top: 2px;
+}
+
+.ex-sets strong { color: var(–text); font-weight: 600; }
+
+/* PROGRESS BANNER */
+.progress-banner {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 6px;
+padding: 14px 18px;
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 16px;
+flex-wrap: wrap;
+}
+
+.progress-label {
+font-family: var(–font-mono);
+font-size: 10px;
+color: var(–muted);
+letter-spacing: 1px;
+white-space: nowrap;
+}
+
+.progress-track {
+flex: 1;
+min-width: 100px;
+height: 5px;
+background: var(–border);
+border-radius: 3px;
+overflow: hidden;
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(–accent), #a8d4b5);
+border-radius: 3px;
+}
+
+.progress-pct {
+font-family: var(–font-display);
+font-size: 18px;
+color: var(–accent);
+letter-spacing: 1px;
+}
+
+/* WEEK VIEWS */
+.week-view { display: none; }
+.week-view.active { display: block; }
+
+/* NOTES */
+.notes-section {
+margin-top: 28px;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 20px 22px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.notes-title {
+font-family: var(–font-display);
+font-size: 20px;
+letter-spacing: 1px;
+color: var(–accent);
+margin-bottom: 14px;
+padding-bottom: 10px;
+border-bottom: 1px solid var(–border);
+}
+
+.notes-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+gap: 12px;
+}
+
+.note-item {
+display: flex;
+gap: 10px;
+align-items: flex-start;
+font-size: 12px;
+color: var(–muted);
+line-height: 1.5;
+}
+
+.note-icon {
+color: var(–accent);
+font-size: 14px;
+flex-shrink: 0;
+margin-top: 1px;
+}
+
+@media (max-width: 600px) {
+.hero-title { font-size: 42px; }
+.goal-card { max-width: 100%; }
+.sessions-grid { grid-template-columns: 1fr; }
+.header-meta { display: none; }
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(–bg); }
+::-webkit-scrollbar-thumb { background: var(–border); border-radius: 3px; }
+</style>
+
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="logo">HIKE PREP</div>
+    <div class="client-tag">TINA</div>
+  </div>
+  <div class="header-meta">
+    <div class="meta-pill">Sessions <span>3×/wk</span></div>
+    <div class="meta-pill">Duration <span>60 min</span></div>
+    <div class="meta-pill">Block <span>2 Weeks</span></div>
+    <div class="meta-pill">Focus <span>Legs & Calves</span></div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-sub">2-Week Away Block — Hike Preparation</div>
+  <div class="hero-title">TRAIL<br>READY<br><em>TINA</em></div>
+  <div class="hero-desc">Built specifically for your upcoming hike — steep climbs, long distances, uneven terrain. Every session targets the muscles you'll need most on the trail.</div>
+  <div class="goal-cards">
+    <div class="goal-card">
+      <div class="label">Primary Focus</div>
+      <div class="value">LEGS</div>
+      <div class="desc">Quads, hamstrings, glutes</div>
+    </div>
+    <div class="goal-card">
+      <div class="label">Secondary Focus</div>
+      <div class="value">CALVES</div>
+      <div class="desc">25 reps every session</div>
+    </div>
+    <div class="goal-card">
+      <div class="label">Sled Work</div>
+      <div class="value">1×/WK</div>
+      <div class="desc">Session 1 & 4 only</div>
+    </div>
+    <div class="goal-card">
+      <div class="label">Cardio</div>
+      <div class="value">HIKE</div>
+      <div class="desc">Incline treadmill & stair climber</div>
+    </div>
+    <div class="goal-card">
+      <div class="label">Abs</div>
+      <div class="value">FRESH</div>
+      <div class="desc">Different each session</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="week-nav">
+    <button class="week-btn active" onclick="showWeek(1)">WEEK 1</button>
+    <button class="week-btn" onclick="showWeek(2)">WEEK 2</button>
+  </div>
+
+  <!-- ===== WEEK 1 ===== -->
+
+  <div class="week-view active" id="week-1">
+    <div class="week-header">
+      <div class="week-title">WEEK 1 — BUILD</div>
+      <div class="week-focus-tags">
+        <span class="tag tag-sled">Sled — Session 1</span>
+        <span class="tag tag-cardio">Incline Treadmill · Stair Climber</span>
+        <span class="tag tag-legs">Single Leg Priority</span>
+      </div>
+    </div>
+    <div class="progress-banner">
+      <div class="progress-label">BLOCK PROGRESS</div>
+      <div class="progress-track"><div class="progress-fill" style="width:50%"></div></div>
+      <div class="progress-pct">W1</div>
+    </div>
+
+```
+<div class="sessions-grid">
+
+  <!-- SESSION 1 -->
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-num">SESSION 1</div>
+      <div class="session-day">MON · ~60 MIN</div>
+    </div>
+    <div class="session-body">
+
+      <div class="sled-block">
+        <div class="sled-title">SLED CIRCUIT — minimum rest</div>
+        <div class="circuit-note">3 rounds · rest 90s between rounds</div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Sled Push Heavy<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Drive through heels · lean into sled</div></div>
+          <div class="ex-sets"><strong>3 × 20m</strong></div>
+        </div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Sled Drag Backwards</div><div class="ex-note">Face away · pull with hamstrings</div></div>
+          <div class="ex-sets"><strong>3 × 20m</strong></div>
+        </div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Sled Lateral Drag</div><div class="ex-note">Side step · hips square · each side</div></div>
+          <div class="ex-sets"><strong>3 × 10m/side</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">CALVES</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Leg Press Calf Raise<span class="badge badge-key">KEY</span></div><div class="ex-note">Full range · pause at top · slow lower</div></div>
+        <div class="ex-sets"><strong>3 × 25 · 40kg</strong></div>
+      </div>
+
+      <div class="section-label">LEGS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Leg Press Single Leg<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Each leg independently · control descent</div></div>
+        <div class="ex-sets"><strong>3 × 12/leg · 30kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Bulgarian Split Squat DB<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Rear foot elevated · knee tracks over toe</div></div>
+        <div class="ex-sets"><strong>3 × 10/leg · 8kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Pull Through</div><div class="ex-note">Hip hinge · drive hips forward at top</div></div>
+        <div class="ex-sets"><strong>3 × 15 · 20kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Hamstring Curl</div><div class="ex-note">Hips up · curl ball in · squeeze</div></div>
+        <div class="ex-sets"><strong>3 × 12 · BW</strong></div>
+      </div>
+
+      <div class="section-label">CARDIO</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Treadmill Incline Walk<span class="badge badge-hike">HIKE</span></div><div class="ex-note">8% incline · no holding rails · steady pace</div></div>
+        <div class="ex-sets"><strong>10 mins</strong></div>
+      </div>
+
+      <div class="section-label">ABS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hanging Knee Raises</div><div class="ex-note">Controlled · no swinging</div></div>
+        <div class="ex-sets"><strong>3 × 12 · BW</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Pike</div></div>
+        <div class="ex-sets"><strong>3 × 12 · BW</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 2 -->
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-num">SESSION 2</div>
+      <div class="session-day">WED · ~60 MIN</div>
+    </div>
+    <div class="session-body">
+
+      <div class="cardio-block">
+        <div class="cardio-title">CARDIO OPENER — hike simulation</div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Stair Climber<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Moderate pace · full foot on step · no leaning</div></div>
+          <div class="ex-sets"><strong>10 mins</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">CALVES</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Standing Calf Raise Machine<span class="badge badge-key">KEY</span></div><div class="ex-note">Full stretch at bottom · hold at top</div></div>
+        <div class="ex-sets"><strong>3 × 25 · BW</strong></div>
+      </div>
+
+      <div class="section-label">LEGS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hack Squat Machine</div><div class="ex-note">Moderate depth · feet shoulder width</div></div>
+        <div class="ex-sets"><strong>3 × 12 · 20kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Seated Leg Curl</div><div class="ex-note">Full range · squeeze at end</div></div>
+        <div class="ex-sets"><strong>3 × 12</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Single Leg Romanian Deadlift DB<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Hip hinge · slight knee bend · each leg</div></div>
+        <div class="ex-sets"><strong>3 × 10/leg · 8kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hip Abductor Machine</div><div class="ex-note">Controlled · full range</div></div>
+        <div class="ex-sets"><strong>3 × 20</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Box Step Ups DB<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Drive through heel · full hip extension at top</div></div>
+        <div class="ex-sets"><strong>3 × 12/leg · 8kg</strong></div>
+      </div>
+
+      <div class="section-label">CARDIO FINISHER</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Treadmill Incline Walk<span class="badge badge-hike">HIKE</span></div><div class="ex-note">10% incline · cool down pace</div></div>
+        <div class="ex-sets"><strong>8 mins</strong></div>
+      </div>
+
+      <div class="section-label">ABS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Woodchop Half Kneeling Hi–Lo</div><div class="ex-note">Each side · diagonal pull · core braced</div></div>
+        <div class="ex-sets"><strong>3 × 12/side</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Side Plank</div><div class="ex-note">Feet stacked on ball · each side</div></div>
+        <div class="ex-sets"><strong>2 × 30s/side</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 3 -->
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-num">SESSION 3</div>
+      <div class="session-day">FRI · ~60 MIN</div>
+    </div>
+    <div class="session-body">
+
+      <div class="cardio-block">
+        <div class="cardio-title">CARDIO OPENER — climbing simulation</div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Stair Climber<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Start moderate · build to hard by end</div></div>
+          <div class="ex-sets"><strong>12 mins</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">CALVES</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Donkey Calf Raise<span class="badge badge-key">KEY</span></div><div class="ex-note">Hips hinge forward · deep stretch</div></div>
+        <div class="ex-sets"><strong>3 × 25 · BW</strong></div>
+      </div>
+
+      <div class="section-label">LEGS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Leg Extension Machine</div><div class="ex-note">Slow eccentric · 3 sec lower</div></div>
+        <div class="ex-sets"><strong>3 × 15</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Lateral Lunge<span class="badge badge-hike">HIKE</span></div><div class="ex-note">Step wide · sit into hip · push back · each side</div></div>
+        <div class="ex-sets"><strong>3 × 10/side · 10kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Glute Kickback Machine</div><div class="ex-note">Full extension · squeeze at top</div></div>
+        <div class="ex-sets"><strong>3 × 15/leg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Hamstring Curl</div></div>
+        <div class="ex-sets"><strong>3 × 12 · BW</strong></div>
+      </div>
+
+      <div class="section-label">CARDIO FINISHER</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Treadmill Incline Walk<span class="badge badge-hike">HIKE</span></div><div class="ex-note">10% incline · steady pace · cool down</div></div>
+        <div class="ex-sets"><strong>10 mins</strong></div>
+      </div>
+
+      <div class="section-label">ABS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hanging Knee Raises Weighted</div><div class="ex-note">5kg medicine ball between feet</div></div>
+        <div class="ex-sets"><strong>3 × 12 · 5kg MB</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Pallof Press Anti-Rotation Hold</div><div class="ex-note">Mid anchor · press out · hold 2s · each side</div></div>
+        <div class="ex-sets"><strong>3 × 10/side</strong></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- ===== WEEK 2 ===== -->
+
+  <div class="week-view" id="week-2">
+    <div class="week-header">
+      <div class="week-title">WEEK 2 — PUSH</div>
+      <div class="week-focus-tags">
+        <span class="tag tag-sled">Sled — Session 4</span>
+        <span class="tag tag-cardio">Incline Higher · Stair Climber Longer</span>
+        <span class="tag tag-legs">Progressive Overload Throughout</span>
+      </div>
+    </div>
+    <div class="progress-banner">
+      <div class="progress-label">BLOCK PROGRESS</div>
+      <div class="progress-track"><div class="progress-fill" style="width:100%"></div></div>
+      <div class="progress-pct">W2 ✓</div>
+    </div>
+
+```
+<div class="sessions-grid">
+
+  <!-- SESSION 4 -->
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-num">SESSION 4</div>
+      <div class="session-day">MON · ~60 MIN</div>
+    </div>
+    <div class="session-body">
+
+      <div class="sled-block">
+        <div class="sled-title">SLED CIRCUIT — minimum rest</div>
+        <div class="circuit-note">3 rounds · rest 90s between rounds · heavier than Week 1</div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Sled Push Heavy<span class="badge badge-prog">+LOAD</span></div><div class="ex-note">Add weight from Week 1</div></div>
+          <div class="ex-sets"><strong>3 × 20m</strong></div>
+        </div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Sled Drag Backwards<span class="badge badge-prog">+LOAD</span></div></div>
+          <div class="ex-sets"><strong>3 × 20m</strong></div>
+        </div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Sled Lateral Drag<span class="badge badge-prog">+LOAD</span></div></div>
+          <div class="ex-sets"><strong>3 × 15m/side</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">CALVES</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Leg Press Calf Raise<span class="badge badge-key">KEY</span></div><div class="ex-note">+10kg from Session 1</div></div>
+        <div class="ex-sets"><strong>3 × 25 · 50kg</strong></div>
+      </div>
+
+      <div class="section-label">LEGS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Leg Press Single Leg<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 12/leg · 35kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Bulgarian Split Squat DB<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 10/leg · 10kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Pull Through<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 15 · 25kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Hamstring Curl Single Leg<span class="badge badge-prog">HARDER</span></div><div class="ex-note">One leg only · harder than bilateral</div></div>
+        <div class="ex-sets"><strong>3 × 10/leg · BW</strong></div>
+      </div>
+
+      <div class="section-label">CARDIO</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Treadmill Incline Walk<span class="badge badge-hike">HIKE</span></div><div class="ex-note">10% incline · up from 8% Week 1</div></div>
+        <div class="ex-sets"><strong>10 mins</strong></div>
+      </div>
+
+      <div class="section-label">ABS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hanging Knee Raises Weighted</div><div class="ex-note">5kg medicine ball</div></div>
+        <div class="ex-sets"><strong>3 × 12 · 5kg MB</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Pike Roll Out</div><div class="ex-note">Pike then roll ball out to plank · return</div></div>
+        <div class="ex-sets"><strong>3 × 10 · BW</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 5 -->
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-num">SESSION 5</div>
+      <div class="session-day">WED · ~60 MIN</div>
+    </div>
+    <div class="session-body">
+
+      <div class="cardio-block">
+        <div class="cardio-title">CARDIO OPENER — harder than Week 1</div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Stair Climber<span class="badge badge-prog">+2 MINS</span></div><div class="ex-note">Moderate to hard · push the pace</div></div>
+          <div class="ex-sets"><strong>12 mins</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">CALVES</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Standing Calf Raise Machine<span class="badge badge-key">KEY</span></div><div class="ex-note">Add 5–10kg from Session 2</div></div>
+        <div class="ex-sets"><strong>3 × 25 · 10kg</strong></div>
+      </div>
+
+      <div class="section-label">LEGS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hack Squat Machine<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 12 · 30kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Seated Leg Curl<span class="badge badge-prog">+REPS</span></div></div>
+        <div class="ex-sets"><strong>3 × 15</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Single Leg Romanian Deadlift DB<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 10/leg · 10kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hip Abductor Machine<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 20</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Box Step Ups DB<span class="badge badge-prog">+LOAD</span></div><div class="ex-note">Higher box if available</div></div>
+        <div class="ex-sets"><strong>3 × 15/leg · 10kg</strong></div>
+      </div>
+
+      <div class="section-label">CARDIO FINISHER</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Treadmill Incline Walk<span class="badge badge-hike">HIKE</span></div><div class="ex-note">12% incline · up from 10% Week 1</div></div>
+        <div class="ex-sets"><strong>8 mins</strong></div>
+      </div>
+
+      <div class="section-label">ABS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Woodchop Half Kneeling Hi–Lo<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 12/side</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Side Plank<span class="badge badge-prog">+10s</span></div></div>
+        <div class="ex-sets"><strong>2 × 40s/side</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 6 -->
+  <div class="session-card">
+    <div class="session-header">
+      <div class="session-num">SESSION 6</div>
+      <div class="session-day">FRI · ~60 MIN</div>
+    </div>
+    <div class="session-body">
+
+      <div class="cardio-block">
+        <div class="cardio-title">CARDIO OPENER — final push</div>
+        <div class="exercise-row">
+          <div><div class="ex-name">Stair Climber<span class="badge badge-prog">HARDEST YET</span></div><div class="ex-note">Hard pace throughout · earn it</div></div>
+          <div class="ex-sets"><strong>15 mins</strong></div>
+        </div>
+      </div>
+
+      <div class="section-label">CALVES</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Donkey Calf Raise<span class="badge badge-key">KEY</span></div><div class="ex-note">Add 5kg from Session 3</div></div>
+        <div class="ex-sets"><strong>3 × 25 · 5kg</strong></div>
+      </div>
+
+      <div class="section-label">LEGS</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Leg Extension Machine<span class="badge badge-prog">SLOWER</span></div><div class="ex-note">4 sec eccentric · really feel the quad</div></div>
+        <div class="ex-sets"><strong>3 × 15</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Lateral Lunge<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 12/side · 12kg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Glute Kickback Machine<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 15/leg</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Hamstring Curl Single Leg<span class="badge badge-prog">HARDER</span></div></div>
+        <div class="ex-sets"><strong>3 × 10/leg · BW</strong></div>
+      </div>
+
+      <div class="section-label">CARDIO FINISHER</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Treadmill Incline Walk<span class="badge badge-hike">HIKE</span></div><div class="ex-note">12% incline · final cool down · you're ready</div></div>
+        <div class="ex-sets"><strong>10 mins</strong></div>
+      </div>
+
+      <div class="section-label">ABS — BLOCK FINALE</div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Hanging Knee Raises Weighted<span class="badge badge-prog">+LOAD</span></div></div>
+        <div class="ex-sets"><strong>3 × 15 · 5kg MB</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Swiss Ball Pike Roll Out</div><div class="ex-note">Final session — make it count</div></div>
+        <div class="ex-sets"><strong>3 × 12 · BW</strong></div>
+      </div>
+      <div class="exercise-row">
+        <div><div class="ex-name">Cable Pallof Press Anti-Rotation Hold</div></div>
+        <div class="ex-sets"><strong>3 × 10/side</strong></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- COACHING NOTES -->
+
+  <div class="notes-section">
+    <div class="notes-title">COACHING NOTES — FROM YOUR TRAINER</div>
+    <div class="notes-grid">
+      <div class="note-item"><div class="note-icon">▲</div><div>Every session starts with either sled work or stair climber — this directly mimics the demands of hiking uphill with a pack. Don't skip the cardio openers.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>Single leg exercises are the priority here. The hike involves uneven terrain where each leg works independently — Bulgarian split squats and single leg RDLs are your most important lifts.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>Calves get 25 reps every single session. Calf fatigue is the number one complaint on long hikes — we're building the endurance base now so you don't feel it on the trail.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>Week 2 increases load, incline percentage and cardio duration across every session. If Week 1 felt manageable, Week 2 should feel like a proper push.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>The incline treadmill goes from 8% in Week 1 up to 12% in Week 2. No holding the rails — that defeats the purpose and reduces the load on your legs and calves.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>Abs rotate each session — hanging knee raises, Swiss ball work, cable rotations and Pallof press. Core stability is essential for carrying a pack on uneven ground.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>Rest 90 seconds between working sets. Keep moving — 60 minutes goes quickly with the cardio blocks included.</div></div>
+      <div class="note-item"><div class="note-icon">▲</div><div>You've got this Tina. Your trainer will be checking in — enjoy the hike! 🏔️</div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showWeek(n) {
+    document.querySelectorAll('.week-view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('week-' + n).classList.add('active');
+    document.querySelectorAll('.week-btn')[n-1].classList.add('active');
+  }
+</script>
+
+</body>
+</html>
